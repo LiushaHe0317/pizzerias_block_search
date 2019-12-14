@@ -161,6 +161,15 @@ class PizzeriasSearcher:
         return matrix, maximum, max_set
 
     def check_city(self, report=False):
+        """
+        This method returns the matrix, the maximum and a set of maximum tuple of cells.
+
+        :param report: A boolean indicating whether or not print report.
+        :return:
+            - The pizzerias matrix.
+            - A maximum in this the pizzerias matrix.
+            - A set of cells that have maximum.
+        """
         if report:
             print(f"There are {len(self.max_locations())} area(s) where {self.maximum_in_matrix()} Pizzerias can cover, "
                   f"they are: ", self.max_locations())
