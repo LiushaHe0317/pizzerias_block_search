@@ -54,3 +54,12 @@ So the number of pizzerias that deliver pizzas to each block is:
 11200
 
 So the maximum number is 2.
+
+
+For implementing this approach, I used object-oriented programming + unittest based on python. The packages used here are numpy/ matplotlib (see requirements.txt). 
+
+For implementing the pizzerias delivery matrix creation and search, I created the object PizzeriasSearch. This object includes three components: 1). create city matrix and map each shop delivery service availability, add all shop availability matrix and list locations that have the maimum availability, 2). create sub-matrix by given cell coordinate and radius, find the maximum, and list a set of locations in this specified matrix, and 3). return the pizza delivery availability in a given location cell. The code can be found in pizzerias/pizzerias_search.py and code for implementation can be found in script/experiment.py. 
+
+Also for simulating the input data, I created another sampling object PizzeriasSample, which randomly samples according to given size of city and number of shops. The code can be found in pizzerias/pizzerias_delivery.py. 
+
+PizzeriasSearch and PizzeriasSample were both tested, and the test code can be found in test folder. 
