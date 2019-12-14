@@ -1,9 +1,17 @@
 from typing import Sequence
 import numpy
-import matplotlib.pyplot as plt
 
 
 class PizzeriasSearcher:
+    """
+    This object takes the size of the city and number of shops, and construct the matrices each shop delivery can cover
+        and number of delivery for each cell in the city. It can also computes number of delivery for a given cell,
+        maximum of number of delivery, and a sequence of cell coordinates which have the maximum.
+
+    :param n_of_block: An integer which indicates the size of the city.
+    :param shop_covers: A sequence of sequences, each sequence contains a tuple of two integers representing the
+        coordinate of a pizzerias shop and an integer representing the distance the shop could cover.
+    """
     def __init__(self, n_of_block: int, shop_covers: Sequence):
         self.n_of_block = n_of_block
         self.shop_covers = shop_covers
@@ -43,14 +51,6 @@ class PizzeriasSearcher:
         :return: number of delivery in the current location.
         """
         return self.pizzerias_matrix[self.n_of_block - home_loc[1], home_loc[0] - 1]
-
-    def plot_pizzerias_matrix(self, pizzerias_matrix: numpy.ndarray):
-        """
-        This method plots a 2D ``numpy.ndarray`` of the matrix that pizzzerias delivery services cover..
-
-        :param pizzerias_matrix: A 2D ``numpy.ndarray``.
-        """
-        ...
 
     @property
     def no_of_pizzeriass(self):
