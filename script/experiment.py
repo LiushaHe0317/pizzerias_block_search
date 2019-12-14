@@ -12,24 +12,29 @@ sampler = PizzeriasSample(n_of_block, n_of_shops=n_of_shop, seed=seed)
 shop_locs = sampler.sample()
 
 searcher = PizzeriasSearcher(n_of_block, shop_locs)
-matrix = searcher.pizzerias_matrix
+
+# if I live at cell (101, 106), I want to check the delivery service in my area
+location = (101, 106)
+searcher.check_location(location, report=True)
+
+# if I check the area around me with 100 units
+radius = 100
+area_matrix, area_maximum, area_max_locs = searcher.check_area(location, radius=100, report=True)
+
+# I can also check the whole city
+city_matrix, city_maxmum, city_max_locs = searcher.check_city(report=True)
 
 # now we could plot the matrix, so we could have a gut feeling for pizzerias delivery services
-fig = plt.figure(1)
-im = plt.imshow(matrix, cmap=plt.cm.get_cmap('jet'), interpolation='bicubic')
-cbar = fig.colorbar(im)
+fig1 = plt.figure(1)
+im1 = plt.imshow(city_matrix, cmap=plt.cm.get_cmap('jet'), interpolation='bicubic')
+cbar1 = fig1.colorbar(im1)
 plt.ylim(0, n_of_block)
 plt.title('Pizzerias Delivery Map')
 plt.show()
 
-# if I live at cell (101, 106)
-num = searcher.number_in_location((200, 106))
-if num == 0:
-    print("Unforutnately, there is no delivery service in your are.")
-else:
-    print(f'Cool, {int(num)} pizzerias could cover your area.')
-
-# if I need to know some where that has the most deliveries
-locs = searcher.best_home_locations
-
-print(f"There are {len(locs)} area(s) where {searcher.maximum_in_the_city} Pizzerias can cover, they are: ", locs)
+fig2 = plt.figure(2)
+im2 = plt.imshow(area_matrix, cmap=plt.cm.get_cmap('jet'), interpolation='bicubic')
+cbar2 = fig2.colorbar(im2)
+plt.ylim(0, radius*2+1)
+plt.title('Specified area map')
+plt.show()
